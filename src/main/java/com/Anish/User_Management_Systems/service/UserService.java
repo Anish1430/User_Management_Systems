@@ -20,4 +20,20 @@ public class UserService {
         userRepo.saveAll(newUser);
         return "Added a User";
     }
+
+    public String getDeleteById(Long id) {
+        userRepo.deleteById(id);
+        return "Remove The user";
+    }
+
+    public String updateUserById(Long id, String email) {
+        User presentUser=userRepo.findById(id).orElse(null);
+        if(presentUser != null){
+            presentUser.setEmail(email);
+            userRepo.save(presentUser);
+            return "User is Updated";
+        }else {
+            return "User is not updated";
+        }
+    }
 }

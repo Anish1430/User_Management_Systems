@@ -3,10 +3,7 @@ package com.Anish.User_Management_Systems.controller;
 import com.Anish.User_Management_Systems.model.User;
 import com.Anish.User_Management_Systems.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -27,6 +24,18 @@ public class UserController {
     @PostMapping("users")
     public String addUser(@RequestBody List<User> newUser){
         return userService.addUser(newUser);
+    }
+
+    //Delete the User by Id
+    @DeleteMapping("user/id/{id}")
+    public String getDeleteById(@PathVariable Long id){
+        return userService.getDeleteById(id);
+    }
+//Put the User
+
+    @PutMapping("user/email/id")
+    public String updateUserById(@RequestParam Long id, @RequestParam String email) {
+        return userService.updateUserById(id,email);
     }
 
 }
